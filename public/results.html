@@ -98,6 +98,19 @@
   </section>
 </div>
 
+<div id="errorState" class="errorState is-hidden" role="status" aria-live="polite">
+  <div class="errorCard">
+    <div class="errorBadge" id="errorCode">—</div>
+    <h1 class="errorTitle" id="errorTitle">We couldn’t extract this site</h1>
+    <p class="errorMsg" id="errorMsg">Try another website and try again.</p>
+    <p class="errorHint" id="errorHint"></p>
+    <div class="errorActions">
+      <a class="btn btn--primary" href="/" id="btnTryAnother">Try another URL</a>
+      <button class="btn btn--ghost" type="button" id="btnRetry">Retry</button>
+    </div>
+  </div>
+</div>
+
 <section id="contentGrid" class="grid">
     <article class="card">
       <div class="card__head">
@@ -213,7 +226,11 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<footer class="footer"><span>Created with ❤️ by <a href="mailto:hellogitau@gmail.com">GitGitau</a></span></footer>
+<footer class="footer">
+  <div class="container footer__inner">
+    Built by <a class="footerLink" href="mailto:hellogitau@gmail.com">Git Gitau</a>
+  </div>
+</footer>
 
 <script src="results.js"></script>
 </body>

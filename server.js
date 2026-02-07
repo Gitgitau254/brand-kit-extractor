@@ -7,6 +7,52 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+function friendlyError({ kind, status, url }) {
+  if (kind === 'INVALID_URL') {
+    return {
+      code: 'invalid_url',
+      title: 'Invalid URL',
+      message: 'Please enter a valid website address like example.com.',
+      hint: 'Tip: You can paste without https:// or www.'
+    };
+  }
+
+  if (kind === 'BLOCKED') {
+    return {
+      code: 'blocked',
+      title: 'This site blocked the scan',
+      message: 'Some websites use protection (e.g., Cloudflare or security plugins) that blocks automated analysis.',
+      hint: 'Try a different page on the same site, or use the Chrome extension (best for protected sites).'
+    };
+  }
+
+  if (kind === 'TIMEOUT') {
+    return {
+      code: 'timeout',
+      title: 'The site took too long to respond',
+      message: 'This website didn’t load in time for extraction.',
+      hint: 'Try again, or try a lighter page (e.g., the homepage).'
+    };
+  }
+
+  if (status === 404) {
+    return {
+      code: 'not_found',
+      title: 'Page not found',
+      message: 'The website responded, but the page doesn’t exist (404).',
+      hint: 'Check the URL and try again.'
+    };
+  }
+
+  return {
+    code: 'failed',
+    title: 'We couldn’t extract this site',
+    message: 'Something prevented the extraction from completing.',
+    hint: 'Try again, or try another website.'
+  };
+}
+
 app.disable("x-powered-by");
 app.use(express.static(path.join(__dirname, "public"), { maxAge: "0" }));
 
@@ -405,4 +451,11 @@ app.get("/api/extract", async (req, res) => {
 });
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+
+// Fallback 404
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
 app.listen(PORT, () => console.log(`Brand Kit Extractor running on http://localhost:${PORT}`));

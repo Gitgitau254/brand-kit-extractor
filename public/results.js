@@ -43,9 +43,39 @@ const els = {
   componentTokens: document.getElementById('componentTokens'),
   twPreview: document.getElementById('twPreview'),
   btnCopyTw: document.getElementById('btnCopyTw'),
+  errorState: document.getElementById('errorState'),
+  errorCode: document.getElementById('errorCode'),
+  errorTitle: document.getElementById('errorTitle'),
+  errorMsg: document.getElementById('errorMsg'),
+  errorHint: document.getElementById('errorHint'),
+  btnRetry: document.getElementById('btnRetry'),
   skeleton: document.getElementById('skeleton'),
   contentGrid: document.getElementById('contentGrid'),
 };
+
+
+function showErrorState(payload){
+  if (!els.errorState) return;
+  els.errorState.classList.remove('is-hidden');
+  if (els.contentGrid) els.contentGrid.classList.add('is-hidden');
+
+  const code = payload?.code || 'failed';
+  const title = payload?.title || 'We couldn’t extract this site';
+  const msg = payload?.message || 'Try another website and try again.';
+  const hint = payload?.hint || '';
+
+  if (els.errorCode) els.errorCode.textContent = String(code).toLowerCase();
+  if (els.errorTitle) els.errorTitle.textContent = title;
+  if (els.errorMsg) els.errorMsg.textContent = msg;
+  if (els.errorHint) els.errorHint.textContent = hint;
+
+  setExportEnabled(false);
+}
+
+function hideErrorState(){
+  if (!els.errorState) return;
+  els.errorState.classList.add('is-hidden');
+}
 
 function setSkeleton(isLoading){
   if (els.skeleton) els.skeleton.classList.toggle('is-hidden', !isLoading);
@@ -486,6 +516,7 @@ function renderKit(kit) {
 }
 
 async function extract(url) {
+  hideErrorState();
   setStatus('Extracting…', 'loading');
   setSkeleton(true);
   setExportEnabled(false);
@@ -494,6 +525,14 @@ async function extract(url) {
     const qs = new URLSearchParams({ url });
     const r = await fetch(`/api/extract?${qs.toString()}`);
     const data = await r.json();
+
+    if (!data.ok){
+      setSkeleton(false);
+      if (els.modeToggle) els.modeToggle.classList.add('is-hidden');
+      showErrorState(data);
+      setStatus('Failed', 'err');
+      return;
+    }
     if (!r.ok) throw new Error(data?.error || `Request failed (${r.status})`);
 
     lastVariants = data.variants || { light: data.kit, dark: null };
@@ -504,6 +543,7 @@ async function extract(url) {
       if (els.modeLight) { els.modeLight.classList.add('is-active'); els.modeLight.setAttribute('aria-selected','true'); }
       if (els.modeDark) { els.modeDark.classList.remove('is-active'); els.modeDark.setAttribute('aria-selected','false'); }
     }
+    hideErrorState();
     renderKit(data.kit);
     setSkeleton(false);
     setStatus(`Done • ${data.ms}ms`, 'ok');
