@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brand Kit Extractor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="landing">
+
+<header class="top">
+  <div class="container top__inner">
+    <a class="brand" href="./">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">Brand Kit Extractor</span>
+    </a>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="container hero__inner">
+
+    <div class="badge">Brand kit extractor</div>
+
+    <h1 class="hero__title">
+      Extract a website’s<br />
+      design system in seconds.
+    </h1>
+
+    <p class="subtitle">
+      Instantly uncover colors, typography, spacing, and UI patterns from any website.
+    </p>
+
+    <form id="landingForm" class="urlbar" autocomplete="off">
+      <label class="sr-only" for="landingUrl">Website URL</label>
+      <input
+        id="landingUrl"
+        type="text"
+        placeholder="example.com"
+        required
+        inputmode="url"
+        aria-label="Website URL"
+      />
+      <button type="submit" class="btn btn--primary">Extract brand kit</button>
+    </form>
+
+    <div class="hint">
+      Paste a domain (example.com) or a full URL. HTTPS is added automatically.
+    </div>
+
+    <div class="featureRow">
+      <span class="chip">Colors</span>
+      <span class="chip">Typography</span>
+      <span class="chip">Spacing</span>
+      <span class="chip">Components</span>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer"><span>Created with ❤️ by <a href="mailto:hellogitau@gmail.com">GitGitau</a></span></footer>
+
+<script src="landing.js"></script>
+</body>
+</html>

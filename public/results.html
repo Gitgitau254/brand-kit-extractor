@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Results · Brand Kit Extractor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="resultsTop">
+  <div class="container resultsTop__inner">
+    <a class="brand brand--link" href="./">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">Brand Kit Extractor</span>
+    </a>
+
+    <form id="resultsForm" class="urlbar urlbar--compact" autocomplete="off">
+      <label class="sr-only" for="resultsUrl">Website URL</label>
+      <input id="resultsUrl" type="text" inputmode="url" placeholder="example.com" required />
+      <button type="submit" class="btn btn--primary">Extract</button>
+    </form>
+
+    <div class="actions">
+      <button class="btn btn--ghost" id="btnCopyCss" disabled>Copy CSS Vars</button>
+      <button class="btn btn--ghost" id="btnCopyJson" disabled>Copy JSON</button>
+      <button class="btn btn--primary" id="btnDownloadJson" disabled>Download JSON</button>
+    </div>
+  </div>
+</header>
+
+<main class="container results">
+  <div class="resultsHead">
+    <div>
+      <h1 class="resultsTitle">Brand kit</h1>
+      <p class="resultsSub" id="resultsMeta">—</p>
+    </div>
+    <div class="headRight">
+  <div class="modeToggle is-hidden" id="modeToggle" role="tablist" aria-label="Color scheme">
+    <button class="modeBtn is-active" id="modeLight" type="button" aria-selected="true">Light</button>
+    <button class="modeBtn" id="modeDark" type="button" aria-selected="false">Dark</button>
+  </div>
+  <div class="pill" id="statusPill">Idle</div>
+</div>
+  </div>
+
+  <div id="skeleton" class="skeletonWrap">
+  <section class="grid">
+    <article class="card">
+      <div class="card__head">
+        <div class="sk sk-title"></div>
+        <div class="sk sk-pill"></div>
+      </div>
+      <div class="sk sk-sub"></div>
+      <div class="skGrid">
+        <div class="sk sk-swatch"></div><div class="sk sk-swatch"></div><div class="sk sk-swatch"></div>
+        <div class="sk sk-swatch"></div><div class="sk sk-swatch"></div><div class="sk sk-swatch"></div>
+      </div>
+      <div class="sk sk-line"></div>
+    </article>
+    <article class="card">
+      <div class="card__head">
+        <div class="sk sk-title"></div>
+        <div class="sk sk-pill"></div>
+      </div>
+      <div class="skList">
+        <div class="sk sk-row"></div>
+        <div class="sk sk-row"></div>
+        <div class="sk sk-row"></div>
+        <div class="sk sk-row"></div>
+        <div class="sk sk-row"></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card__head">
+        <div class="sk sk-title"></div>
+        <div class="sk sk-pill"></div>
+      </div>
+      <div class="skList">
+        <div class="sk sk-chipRow"></div>
+        <div class="sk sk-chipRow"></div>
+        <div class="sk sk-chipRow"></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card__head">
+        <div class="sk sk-title"></div>
+        <div class="sk sk-pill"></div>
+      </div>
+      <div class="sk sk-code"></div>
+      <div class="sk sk-code"></div>
+    </article>
+  </section>
+</div>
+
+<section id="contentGrid" class="grid">
+    <article class="card">
+      <div class="card__head">
+        <h2>Color Palette</h2>
+        <div class="pill" id="siteHost">—</div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Core</div>
+        <div class="swatchRow" id="coreSwatches"></div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Accents</div>
+        <div class="swatchRow" id="accentSwatches"></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="paletteSummaryRow">
+  <div class="small" id="paletteSummary">No data yet.</div>
+  <button class="btn btn--ghost btn--sm" id="btnCopyAllCore" disabled>Copy all</button>
+</div>
+
+      <div class="divider"></div>
+      <div class="section">
+        <div class="section__title">Accessibility</div>
+        <div class="contrast" id="contrastRows"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__head">
+        <h2>Typography</h2>
+        <div class="pill" id="siteTitle">—</div>
+      </div>
+
+      <div class="kv">
+        <div class="kv__row"><div class="kv__k">Body font</div><div class="kv__v"><span id="bodyFont">—</span><div class="fontActions" id="bodyFontActions"></div></div></div>
+        <div class="kv__row"><div class="kv__k">Heading font</div><div class="kv__v"><span id="headingFont">—</span><div class="fontActions" id="headingFontActions"></div></div></div>
+        <div class="kv__row"><div class="kv__k">Weights</div><div class="kv__v" id="weights">—</div></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="fontPreview" id="fontPreview">
+        <div class="fontPreview__h">Heading preview</div>
+        <div class="fontPreview__p">Body preview — The quick brown fox jumps over the lazy dog.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="typeScale">
+        <div class="typeScale__row"><div class="typeScale__label">H1</div><div class="typeScale__val" id="h1Size">—</div></div>
+        <div class="typeScale__row"><div class="typeScale__label">H2</div><div class="typeScale__val" id="h2Size">—</div></div>
+        <div class="typeScale__row"><div class="typeScale__label">H3</div><div class="typeScale__val" id="h3Size">—</div></div>
+        <div class="typeScale__row"><div class="typeScale__label">Body</div><div class="typeScale__val" id="bodySize">—</div></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__head">
+        <h2>UI Tokens</h2>
+        <div class="pill">Radii • Shadows • Spacing</div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Border radius</div>
+        <div class="chips" id="radiiChips"></div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Shadows</div>
+        <div class="stack" id="shadowStack"></div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Spacing</div>
+        <div class="chips" id="spacingChips"></div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Components</div>
+        <div class="componentTokens" id="componentTokens"></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__head">
+        <h2>Export</h2>
+        <div class="pill">JSON + CSS variables</div>
+      </div>
+
+      <div class="section">
+        <div class="section__title">CSS variables preview</div>
+        <pre class="code" id="cssPreview">/* extract a kit to generate CSS */</pre>
+      </div>
+
+      <div class="section">
+        <div class="section__title">JSON preview</div>
+        <pre class="code" id="jsonPreview">{}</pre>
+      </div>
+
+      <div class="section">
+        <div class="section__title">Tailwind export</div>
+        <pre class="code" id="twPreview">/* extract a kit to generate Tailwind config */</pre>
+        <div class="exportRow">
+          <button class="btn btn--ghost btn--sm" id="btnCopyTw" disabled>Copy Tailwind</button>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<footer class="footer"><span>Created with ❤️ by <a href="mailto:hellogitau@gmail.com">GitGitau</a></span></footer>
+
+<script src="results.js"></script>
+</body>
+</html>
