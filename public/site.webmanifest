@@ -1,0 +1,9 @@
+{
+  "name": "Brand Kit Extractor",
+  "short_name": "BrandKit",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "description": "Extract a website’s colors, fonts, UI tokens, dark mode, and accessibility contrast checks."
+}

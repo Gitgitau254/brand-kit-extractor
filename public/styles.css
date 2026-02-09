@@ -931,3 +931,125 @@ body:not(.landing) main.results{
   margin-top: 14px;
   flex-wrap: wrap;
 }
+
+
+/* ---------- Mobile responsiveness ---------- */
+@media (max-width: 720px){
+  .container{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .topbar__inner{
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .topnav{
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero{
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .heroCard{
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .heroTitle{
+    font-size: 24px;
+    line-height: 1.15;
+  }
+
+  .heroSub{
+    font-size: 14px;
+  }
+
+  .heroActions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroActions .btn{
+    width: 100%;
+  }
+
+  .urlForm{
+    gap: 10px;
+  }
+
+  .urlInput{
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .card{
+    border-radius: 22px;
+  }
+
+  .card__head{
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .headRight{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .modeToggle{
+    transform: scale(0.96);
+    transform-origin: left center;
+  }
+
+  .palette{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .swatch{
+    height: 54px;
+  }
+
+  .paletteSummaryRow{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .exportRow{
+    justify-content: flex-start;
+  }
+
+  .code{
+    max-height: 260px;
+    overflow: auto;
+  }
+
+  .footer{
+    padding: 12px 0 16px;
+    font-size: 12px;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 420px){
+  .palette{
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .brand__name{
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brand-kit-extractor-4.fly.dev/sitemap.xml
