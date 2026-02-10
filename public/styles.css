@@ -78,21 +78,6 @@ a{ color: inherit; }
   padding: 14px 0;
 }
 
-.brand{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.brand__mark{
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--primary), var(--primary2));
-  box-shadow: 0 14px 28px rgba(31,79,219,0.18);
-}
-
 .brand__text{
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -1051,5 +1036,29 @@ body:not(.landing) main.results{
   .brand__name{
     font-size: 14px;
   }
+}
+
+/* Brand mark (glyph) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+
+.brand__mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  font-size:28px;
+  font-weight:800;
+  line-height:1;
+  color:#0b0f1a;
+  background:transparent;
+  border:none;
+  border-radius:0;
 }
 
